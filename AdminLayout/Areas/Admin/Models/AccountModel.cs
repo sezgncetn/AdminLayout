@@ -23,6 +23,20 @@ namespace AdminLayout.Areas.Admin.Models
 
     }
 
+    public class PasswordResetModel
+    {
+        [Required(ErrorMessage = "Eposta Boş Zorunludur.")]
+        [EmailAddress(ErrorMessage = "Eposta formatında giriniz.")]
+        public string Email { get; set; }
+
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$", ErrorMessage = "En az 1 harf, 1 numara girilmelidir. Minimum 8 Maksimum 12 karakteri geçemezsiniz.")]
+        [Required(ErrorMessage = "Parola Zorunludur.")]
+        public string Password { get; set; }
+
+        [Compare("Password", ErrorMessage = "Şifre Uyuşmuyor.")]
+        public string PasswordConfirm { get; set; }
+    }
+
     public class RegisterModel
     {
         [Required(ErrorMessage = "İsim Boş geçilemez.")]
